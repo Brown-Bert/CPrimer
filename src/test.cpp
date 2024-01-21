@@ -41,40 +41,32 @@ private:
 class X
 {
 public:
-    int i;
-    int j;
+    string i;
 public:
-    X(int val): j(val), i(j){}; 
+    X() = default;
+    X(string s) : i(s){}
+    X(const X &x) : i(x.i){}
+    X& operator=(const X &x);
+
+};
+
+class SmallInt
+{
+public:
+    SmallInt(int i = 0) : val(i){}
+    operator string() const {return "helloadadsfa";}
+private:
+    int val;
+    int b;
 };
 
 
 int main(int argc, char* argv[])
 {
-    // std::cin.clear();
-    std::vector<int> v;
-    v.push_back(1);
-    v.push_back(-1);
-    v.push_back(2);
-    v.push_back(-2);
-    auto f = [](int i) {
-        if (i > 0)
-        {
-            return i;
-        }else
-        {
-            return -i;
-        }
-    };
-    std::transform(v.begin(), v.end(), v.begin(), f);
-    std::for_each(v.begin(), v.end(), [](int i){
-        std::cout << i << std::endl;
-    });
-    int x = 5;
-    int&& rvalueRef = 10;
-    int &s = rvalueRef;
-    rvalueRef = 20;
-    std::cout << rvalueRef << std::endl;
-    auto t = std::back_inserter(v);
-     
+    SmallInt si;
+    string st = si;
+    std::cout << st << std::endl;
     exit(0);
 }
+
+inline X& X::operator=(const X &x) = default;
